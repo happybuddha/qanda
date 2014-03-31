@@ -1,0 +1,40 @@
+<jsp:root version="2.0" 
+  xmlns:jsp="http://java.sun.com/JSP/Page" 
+  xmlns:c="http://java.sun.com/jsp/jstl/core" 
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:rds="http://rds.com.au/tags/rds"
+  xmlns:rds-form="http://rds.com.au/tags/rds-form"
+  xmlns:spring="http://www.springframework.org/tags"
+  xmlns:lodge="urn:jsptagdir:/WEB-INF/tags/lodge"
+  xmlns:buildingPermitView="urn:jsptagdir:/WEB-INF/tags/buildingPermit/view"
+  xmlns:buildingPermitCommon="urn:jsptagdir:/WEB-INF/tags/buildingPermit/common"
+  xmlns:document="urn:jsptagdir:/WEB-INF/tags/document"
+  xmlns:parcel="urn:jsptagdir:/WEB-INF/tags/parcel"
+  xmlns:jwr="http://jawr.net/tags" >
+
+<jwr:script src="/bundles/view/view.js"/>
+<jwr:style src="/bundles/documents.css" />
+<jwr:style src="/bundles/lodge.css" />
+
+  <rds-form:form label="${buildingPermit.referenceName} - Building Permit" modelAttribute="buildingPermit" commandName="buildingPermit">
+    <rds-form:group displayOnly="true">
+        
+        <parcel:section title="Parcels" parcels="${buildingPermit.parcels}"/>
+
+        <buildingPermitCommon:applicant/>
+        <buildingPermitView:stagedPermit/>
+        <buildingPermitView:descriptionOfWork/>
+        <buildingPermitView:practitionerDetails prescribed="${buildingPermit.prescribed}" section40="${buildingPermit.section40}" 
+          builders="${buildingPermit.builders}" plumbers="${buildingPermit.plumbers}" engineers="${buildingPermit.engineers}"/>
+        <buildingPermitCommon:tier2/>
+        <buildingPermitView:developmentApproval/>
+        <buildingPermitCommon:publication/>
+        <buildingPermitView:permitNumber/>
+        <buildingPermitView:part4/>
+        <buildingPermitView:extensionOfTime title="Extension of Time" extensionsOfTime="${buildingPermit.extensionsOfTime}" />
+        
+      </rds-form:group>
+</rds-form:form>
+
+
+</jsp:root>

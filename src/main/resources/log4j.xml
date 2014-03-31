@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+
+  <!-- $Id: log4j.xml 1787 2013-12-16 07:17:33Z gfmcna $ -->
+  <!-- Appenders -->
+  <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+    <param name="Threshold" value="ERROR" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%c %d{ISO8601} -- %p -- %m%n" />
+    </layout>
+  </appender>
+
+  <!-- Log file for all messages from notification jobs, these run frequently and create a lot of noise -->
+  <appender name="Notifications" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="${lsco.building.logs.directory}/building.notification.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+    <param name="Append" value="true" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
+  <!-- All database related logging e.g. oracle driver logging, hibernate logging including sql and bind variable output -->
+  <appender name="Database" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="${lsco.building.logs.directory}/building.database.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+    <param name="Append" value="true" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
+  <!-- General logging, log statements from our application code go here -->
+  <appender name="Application" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="${lsco.building.logs.directory}/building.application.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+    <param name="Append" value="true" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
+  <!-- Spring Security output, security filter chain logging -->
+  <appender name="Security" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="${lsco.building.logs.directory}/building.security.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+    <param name="Append" value="true" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
+  <!-- All log messages at Error level or above -->
+  <appender name="Error" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="${lsco.building.logs.directory}/building.error.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+    <param name="Append" value="true" />
+    <param name="Threshold" value="ERROR" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
+  <!-- Loggers -->
+
+  <!-- Database logging -->
+  <!-- Logging of bind variables -->
+  <logger name="org.springframework.jdbc.core.StatementCreatorUtils">
+    <level value="INFO" />
+    <appender-ref ref="Database" />
+  </logger>
+
+  <logger name="org.springframework.jdbc.core.JdbcTemplate">
+    <level value="INFO" />
+    <appender-ref ref="Database" />
+  </logger>
+
+  <!-- General hibernate logging -->
+  <logger name="org.hibernate">
+    <level value="INFO" />
+    <appender-ref ref="Database" />
+    <appender-ref ref="Error" />
+  </logger>
+
+  <!-- Hibernate SQL output -->
+  <logger name="org.hibernate.SQL">
+    <level value="INFO" />
+    <appender-ref ref="Database" />
+    <appender-ref ref="Error" />
+  </logger>
+  <root>
+    <priority value="ERROR" />
+    <appender-ref ref="stdout" />
+  </root>
+
+</log4j:configuration>

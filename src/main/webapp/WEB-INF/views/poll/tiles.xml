@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+  <definition extends="blank" name="buildingPermit/part2search">
+    <put-attribute name="body"
+      value="/WEB-INF/views/buildingPermit/part2search.jspx" />
+  </definition>
+
+</tiles-definitions>
