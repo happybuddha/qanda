@@ -51,13 +51,12 @@ public class QuestionDaoImpl implements QuestionDao {
 				    },
 				    keyHolder);
 			System.out.println(keyHolder.getKey());
+			return ""+keyHolder.getKey();
 		
 		}catch(Exception e){
 			e.printStackTrace();
 			return "Failure";
 		}
-	    System.out.println("Created Question");
-	    return "Success";
 	}
 
 }

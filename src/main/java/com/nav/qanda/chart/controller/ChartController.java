@@ -74,11 +74,6 @@ public class ChartController {
 	}
 
 	private PieDataset createDataset(Long questionId) {
-/*		DefaultPieDataset result = new DefaultPieDataset();
-        result.setValue("Linux", 29);
-        result.setValue("Mac", 20);
-        result.setValue("Windows", 51);
-        return result;*/
         return chSrvc.getPollData(questionId);
 	}
 

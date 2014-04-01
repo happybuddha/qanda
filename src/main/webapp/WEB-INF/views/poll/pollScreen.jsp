@@ -42,8 +42,8 @@ td {
      <td><form:radiobutton path="usersResponse" value="${questionNAns.questionAnswerB}"/><c:out value="${questionNAns.questionAnswerB}"/></td>
      </tr>
     <tr>
-     <td><c:out value="${questionNAns.questionAnswerC}"/></td>
-     <td><c:out value="${questionNAns.questionAnswerD}"/></td>
+     <td><form:radiobutton path="usersResponse" value="${questionNAns.questionAnswerC}"/><c:out value="${questionNAns.questionAnswerC}"/></td>
+     <td><form:radiobutton path="usersResponse" value="${questionNAns.questionAnswerD}"/><c:out value="${questionNAns.questionAnswerD}"/></td>
      </tr>
       <form:hidden path="id" value="${questionNAns.id}" />
    <tr><td colspan="7" align="center"><input type="submit" value="Save" /></td></tr>
